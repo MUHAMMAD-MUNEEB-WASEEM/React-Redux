@@ -5,7 +5,7 @@ import "./update.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { remove, update } from "../../redux/userSlice";
+import { update } from "../../redux/userSlice";
 
 export default function Update() {
 
@@ -20,18 +20,13 @@ export default function Update() {
     e.preventDefault();
     dispatch(update({name, email}))
   }
-  
-  const handleDelete = (e)=>{
-    e.preventDefault();
-    dispatch(remove())
-  }
 
   return (
     <div className="update">
       <div className="updateWrapper">
         <h3 className="updateTitle">Update Your Account</h3>
         <Warning />
-        <button className="delete" onClick={handleDelete}>Delete Account</button>
+        <button className="delete">Delete Account</button>
         <div className="updateContainer">
           <form>
             <div className="formItem">
