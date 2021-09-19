@@ -21,9 +21,6 @@ export default function Update() {
     dispatch(update({name, email}))
   }
 
-
-
-
   return (
     <div className="update">
       <div className="updateWrapper">
