@@ -5,7 +5,7 @@ import "./update.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { remove, update } from "../../redux/userSlice";
+import { remove, update, updateUser2 } from "../../redux/userSlice";
 
 export default function Update() {
 
@@ -14,16 +14,16 @@ export default function Update() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('')
 
-  const user = useSelector(state => state.user) //return till store
+  const {userInfo, pending, error} = useSelector(state => state.user) //return till store
 
   const handleClick = (e)=>{
     e.preventDefault();
-    dispatch(update({name, email}))
+    dispatch(updateUser2({name,email}))
   }
   
   const handleDelete = (e)=>{
     e.preventDefault();
-    dispatch(remove())
+    // dispatch(remove())
   }
 
   return (
@@ -50,7 +50,7 @@ export default function Update() {
               <input
                 className="formInput"
                 type="text"
-                placeholder={user.name}
+                placeholder={userInfo.name}
                 onChange = {(e)=>setName(e.target.value)}
               />
             </div>
@@ -59,7 +59,7 @@ export default function Update() {
               <input
                 className="formInput"
                 type="text"
-                placeholder={user.email}
+                placeholder={userInfo.email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
@@ -70,9 +70,14 @@ export default function Update() {
             <button
               className="updateButton"
               onClick={handleClick}
+              disabled={pending}
             >
               Update
             </button>
+            {error && <span className="error">Something went wrong!</span>}
+            {pending === false && (
+              <span className="success">Account has been updated!</span>
+            )}
           </form>
         </div>
       </div>
