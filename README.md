@@ -21,6 +21,10 @@ In this repo, I am following redux toolkit
 2.	Create store
 3.	Wrapp index.js file in provider with store
 
+## If Want to Create App Using Redux Template:
+
+* npx create-react-app <project-name> --template redux
+
 ## Important Hooks:
 
 1.	useSelector(state => state.storename.key) 
